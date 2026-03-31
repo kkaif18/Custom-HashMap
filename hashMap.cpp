@@ -42,6 +42,35 @@ class HashMap{
             }    
         }
     }
+    
+public:
+    explicit HashMap(int initial_buckets = 16)
+        : buckets(initial_buckets) {}
+        //Initializing the vector with the help of initializer list
+        //Initializer List is used for giving values faster than regular assignment which gives value after object creation and but in Initializer list, value is giving during the creation of the object
 
+    
+    //Inserting the key-value pair in the bucket
+    void insert(const K& key, const V& val){
+        if((float)(count+1) / buckets.size() > load_factor){
+            rehash();
+            /*check for the threshold, if it is greater than 1 on adding the new pair, so we rehash the table to lower the load_factor */
+        }
+
+        auto& bucket = buckets[bucket_index(key)];
+        //Get the index by hashing the key, and then traversing the list at that index if the key exists already the value is updated
+        for(auto& [k, v] : bucket){
+            if(k == key){
+                v = val;
+                return;
+            }
+        }
+        //Runs when a brand new key is to be inserted, as it existed it would have been returned earlier
+        bucket.emplace_front(key, val)
+        //we didnt use push front because,
+        //push_front make first, then put
+        //emplace_front make directly there
+        ++count;
+    }
     
 };
