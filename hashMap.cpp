@@ -68,7 +68,7 @@ public:
             }
         }
         //Runs when a brand new key is to be inserted, as it existed it would have been returned earlier
-        bucket.emplace_front(key, val)
+        bucket.emplace_front(key, val);
         //we didnt use push front because,
         //push_front make first, then put
         //emplace_front make directly there
