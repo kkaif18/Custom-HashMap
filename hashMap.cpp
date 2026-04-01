@@ -73,4 +73,47 @@ public:
         ++count;
     }
     
+    //Function to get the value from its key
+    //Sending the reference of the value instead of a copy which avoids using extra memory
+    V& get(const K& key){
+        auto& bucket = buckets[bucket_index(key)];
+        for(auto& [k, v] : bucket){
+            if(k == key) return v;
+        }
+        //We raise an exception if we don't find any value to the corresponding key
+        //throws -> immediately stops the execution as an error has occured
+        //out_of_range is a type of exception that shows error when values are out of bound, or invalid index like here
+        throw out_of_range("key not found");
+    }
+
+    //Function to delete a key-value pair
+    bool erase(const K& key){
+        //Getting the linked list
+        auto& bucket = buckets[bucket_index(key)];
+        //using an iterator it to traverse the linked list
+        for(auto it = bucket.begin(); it != bucket.end(); it++){
+            //check for the key
+            if(it->first == key){
+                bucket.erase(it);
+                //used the erase function of <list> to erase the [K, V] pair
+                count--;
+                //decreasing the size
+
+                return true; //for successful deletion
+            }
+        }
+
+        return false; //When key is not deleted
+    }
+
+    //check if key is present or not
+    //Same old traversal on list after finding the hashed index
+    bool contains(const K& key){
+        auto& bucket = buckets[bucket_index(key)];
+        for(auto& [k, v] : bucket){
+            if(k == key) return true;
+        }
+
+        return false;
+    }
 };
