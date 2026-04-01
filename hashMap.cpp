@@ -2,6 +2,8 @@
 #include <vector>
 #include <list>
 #include <functional>
+#include <stdexcept>
+
 using namespace std;
 
 template <typename K, typename V> //use of template gives us the flexibility to work with any datatype without further declaring it, hence we can make maps with types <string, int> or <char, string>, etc.
