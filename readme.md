@@ -158,7 +158,7 @@ This is why production flat hash maps like `absl::flat_hash_map` and `robin_hood
 
 ```
 .
-├── Chaining_HashMap.cpp       # separate chaining implementation
+├── hashMap.cpp       # separate chaining implementation
 ├── Optimized_HashMap.cpp      # open addressing with linear probing
 └── README.md
 ```
@@ -168,7 +168,7 @@ This is why production flat hash maps like `absl::flat_hash_map` and `robin_hood
 ## Building
 
 ```bash
-g++ -std=c++17 Chaining_HashMap.cpp  -o Chaining_HashMap  && ./Chaining_HashMap
+g++ -std=c++17 hashMap.cpp  -o Chaining_HashMap  && ./hashMap
 g++ -std=c++17 Optimized_HashMap.cpp -o Optimized_HashMap && ./Optimized_HashMap
 ```
 
